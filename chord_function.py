@@ -5,13 +5,7 @@ Created on Mon Jul 17 15:01:03 2017
 @author: budd
 """
 
-
-#import matplotlib.pyplot as plt
-
-# # # # #
-# CONSTANTS
-
-def chord(root, ratio, duration):
+def chord(root, ratio, duration, name): #inversion='root'):
     ####
     #function to produce a .wav file of a given chord
     #root = root note of chord in Hertz
@@ -22,17 +16,32 @@ def chord(root, ratio, duration):
     import numpy
     import pygame
     # sound length (seconds, a float)
-    SOUNDLEN = duration
+    if type(duration) != float:
+        print("Duration must be a float")
+    else:
+        SOUNDLEN = duration
     # sound frequency (in Herz: the number of vibrations per second)
     SOUNDFREQ = root
-    chord = ratio
-    #chord = [1,1.25,1.5,7/4]
+    # chord expressed as a numpy array of ratios
+    chord = ratio    
+#==============================================================================
+#     #if inversion == 'root' or 'a':
+#         #chord = ratio
+#     if inversion == 'b' or '1st':
+#         chord = chord[1:] + [chord[0]]
+#     if inversion == 'c' or '2nd':
+#         chord = chord[2:] + chord[0:2]
+#     if inversion == 'd' or'4th':
+#         chord = chord[3:] + chord[0:3]    
+#==============================================================================
     # maximal amplitude
     MAXAMP = 32767 / 2
     # sampling frequency (in Herz: the number of samples per second)
     SAMPLINGFREQ = 48000
     # the number of channels (1=mono, 2=stereo)
     NCHANNELS = 2
+    # filename of output
+    filename = name + '.wav'  
 
 
     # # # # #
@@ -41,11 +50,6 @@ def chord(root, ratio, duration):
     # initialise mixer module
     pygame.mixer.init(frequency=SAMPLINGFREQ, channels=NCHANNELS)
 
-    # calculate the amount of sound cycles in the lenght of this sound
-    #ncycles = SOUNDLEN * SOUNDFREQ
-    # calculate the amount of samples per cycle
-    #spc = int((SAMPLINGFREQ * SOUNDLEN) / ncycles)
-    #spc *= 8
     # create a single vibration (range with stepsize = number of samples per cycle)
     t = numpy.arange(SOUNDLEN*SAMPLINGFREQ)
     # t is now just increasing numbers between 0 and 2 pi. Apply a sinusoid to
@@ -55,10 +59,7 @@ def chord(root, ratio, duration):
         sine += numpy.sin(n*2*numpy.pi*SOUNDFREQ/SAMPLINGFREQ*t)
         # multiply the current numbers by the maximum amplitude to make audible sound
     sine *= MAXAMP/10
-        #plt.plot(sine[:10000])
 
-    # repeat the single cycle as much as we need to fill the current sound
-    # sine = numpy.hstack(int(ncycles)*list(sine))
     # for stereo: double the samples, and reshape the single array to two arrays
     if NCHANNELS == 2:
         sine = numpy.repeat(sine, 2, axis=0)
@@ -72,7 +73,7 @@ def chord(root, ratio, duration):
     # WAVE IT UP
 	
     # open new wave file
-    sfile = wave.open('my_chord.wav', 'w')
+    sfile = wave.open(filename, 'w')
 
     # set the parameters
     sfile.setframerate(SAMPLINGFREQ)
@@ -85,4 +86,3 @@ def chord(root, ratio, duration):
     # close file
     sfile.close()
 
-    #plt.show()

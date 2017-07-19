@@ -35,8 +35,6 @@ def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     NCHANNELS = 2
     # filename of output
     filename = name + '.wav'  
-    # total number of samples
-    NSAMPLES = SAMPLINGFREQ*SOUNDLEN
 
     # # # # #
     # PREPARE
@@ -55,19 +53,19 @@ def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     sine *= MAXAMP/10
     
     if plot == 'y':
-        time=[i/SAMPLINGFREQ for i in t]
-        normal_amp=[j/((MAXAMP/10)*len(chord)) for j in sine]         
-        freq = numpy.fft.rfft(normal_amp)
+        time=t/SAMPLINGFREQ
+        normal_amp = sine/max(abs(sine))        
+        freq = numpy.fft.rfft(normal_amp,SAMPLINGFREQ)
         peak = numpy.argmax(freq)
         print(peak)
         
         plt.figure(1)
         plt.subplot(211)
-        plt.plot(time[:4000],normal_amp[:4000])
+        plt.plot(time[:4800000],normal_amp[:480000])
         plt.xlabel('Time(s)')                
         
         plt.subplot(212) 
-        plt.plot(freq[:2000])
+        plt.semilogy(abs(freq[:2000]))
         plt.show
         
     # for stereo: double the samples, and reshape the single array to two arrays

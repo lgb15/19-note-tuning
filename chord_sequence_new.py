@@ -50,7 +50,7 @@ def chord_sequence(roots, ratios, durations, name):
         NOTEFREQ = SOUNDFREQ[i]
         # create a single vibration (range with stepsize = number of samples per cycle)
         t = numpy.arange(CHORDLEN*SAMPLINGFREQ)
-        # t is now just increasing numbers between 0 and 2 pi. Apply a sinusoid to
+        # t is now increasing numbers between 0 and 2 pi. Apply a sinusoid to
         # make them into a wave function
         sine_temp = t*0.0
         for n in chord:

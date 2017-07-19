@@ -5,16 +5,19 @@ Created on Mon Jul 17 15:01:03 2017
 @author: budd
 """
 
-def chord(root, ratio, duration, name): #inversion='root'):
+def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     ####
     #function to produce a .wav file of a given chord
     #root = root note of chord in Hertz
     #ratio = numpy array of ratios to root for subsequent notes
     #duration = duration of chord in Seconds
+    #name = name of saved .wav file
+    #plot -- if ='y', returns 
     ####
     import wave
     import numpy
     import pygame
+    import matplotlib.pyplot as plt
     # sound length (seconds, a float)
     if type(duration) != float:
         print("Duration must be a float")
@@ -24,16 +27,6 @@ def chord(root, ratio, duration, name): #inversion='root'):
     SOUNDFREQ = root
     # chord expressed as a numpy array of ratios
     chord = ratio    
-#==============================================================================
-#     #if inversion == 'root' or 'a':
-#         #chord = ratio
-#     if inversion == 'b' or '1st':
-#         chord = chord[1:] + [chord[0]]
-#     if inversion == 'c' or '2nd':
-#         chord = chord[2:] + chord[0:2]
-#     if inversion == 'd' or'4th':
-#         chord = chord[3:] + chord[0:3]    
-#==============================================================================
     # maximal amplitude
     MAXAMP = 32767 / 2
     # sampling frequency (in Herz: the number of samples per second)
@@ -42,7 +35,8 @@ def chord(root, ratio, duration, name): #inversion='root'):
     NCHANNELS = 2
     # filename of output
     filename = name + '.wav'  
-
+    # total number of samples
+    NSAMPLES = SAMPLINGFREQ*SOUNDLEN
 
     # # # # #
     # PREPARE
@@ -56,10 +50,26 @@ def chord(root, ratio, duration, name): #inversion='root'):
     # make them into a wave function
     sine = 0*t
     for n in chord:
-        sine += numpy.sin(n*2*numpy.pi*SOUNDFREQ/SAMPLINGFREQ*t)
+        sine += numpy.sin(2*n*numpy.pi*SOUNDFREQ/SAMPLINGFREQ*t)
         # multiply the current numbers by the maximum amplitude to make audible sound
     sine *= MAXAMP/10
-
+    
+    if plot == 'y':
+        time=[i/SAMPLINGFREQ for i in t]
+        normal_amp=[j/((MAXAMP/10)*len(chord)) for j in sine]         
+        freq = numpy.fft.rfft(normal_amp)
+        peak = numpy.argmax(freq)
+        print(peak)
+        
+        plt.figure(1)
+        plt.subplot(211)
+        plt.plot(time[:4000],normal_amp[:4000])
+        plt.xlabel('Time(s)')                
+        
+        plt.subplot(212) 
+        plt.plot(freq[:2000])
+        plt.show
+        
     # for stereo: double the samples, and reshape the single array to two arrays
     if NCHANNELS == 2:
         sine = numpy.repeat(sine, 2, axis=0)
@@ -68,7 +78,7 @@ def chord(root, ratio, duration, name): #inversion='root'):
     # create a sound from the list
     snd = pygame.mixer.Sound(sine.astype('int16'))
 
-
+    
     # # # # #
     # WAVE IT UP
 	

@@ -38,32 +38,38 @@ ttet_ratios=[
 1.8877486253633868
 ]
 
-# some common chord ratios for 12tet #
+# some common chord ratios for 12tet - a,b,c,d denotes inversions of the chords #
+# major triads #
 maj_12a = [ttet_ratios[0],ttet_ratios[4],ttet_ratios[7]]
 maj_12b = [ttet_ratios[4],ttet_ratios[7],2*ttet_ratios[0]]
 maj_12c = [ttet_ratios[7],2*ttet_ratios[0],2*ttet_ratios[4]]
 
+# minor triads #
 min_12a = [ttet_ratios[0],ttet_ratios[3],ttet_ratios[7]]
 min_12b = [ttet_ratios[3],ttet_ratios[7],2*ttet_ratios[0]]
 min_12c = [ttet_ratios[7],2*ttet_ratios[0],2*ttet_ratios[3]]
 
+# dominant sevenths #
 dom7_12a = [ttet_ratios[0],ttet_ratios[4],ttet_ratios[7],ttet_ratios[10]]
 dom7_12b = [ttet_ratios[4],ttet_ratios[7],ttet_ratios[10],2*ttet_ratios[0]]
 dom7_12c = [ttet_ratios[7],ttet_ratios[10],2*ttet_ratios[0],2*ttet_ratios[4]]
 dom7_12d = [ttet_ratios[10],2*ttet_ratios[0],2*ttet_ratios[4],2*ttet_ratios[7]]
 
+# minor sevenths #
 min7_12a = [ttet_ratios[0],ttet_ratios[3],ttet_ratios[7],ttet_ratios[10]]
 min7_12b = [ttet_ratios[3],ttet_ratios[7],ttet_ratios[10],2*ttet_ratios[0]]
 min7_12c = [ttet_ratios[7],ttet_ratios[10],2*ttet_ratios[0],2*ttet_ratios[3]]
 min7_12d = [ttet_ratios[10],2*ttet_ratios[0],2*ttet_ratios[3],2*ttet_ratios[7]]
 
+# major sevenths #
 maj7_12a = [ttet_ratios[0],ttet_ratios[4],ttet_ratios[7],ttet_ratios[11]]
 maj7_12b = [ttet_ratios[4],ttet_ratios[7],ttet_ratios[11],2*ttet_ratios[0]]
 maj7_12c = [ttet_ratios[7],ttet_ratios[11],2*ttet_ratios[0],2*ttet_ratios[4]]
 maj7_12d = [ttet_ratios[11],2*ttet_ratios[0],2*ttet_ratios[4],2*ttet_ratios[7]]
 
+# diminished and diminished sevenths #
 dim_12 = [ttet_ratios[0],ttet_ratios[3],ttet_ratios[6]]
-dim7_12 = [ttet_ratios[0],ttet_ratios[3],ttet_ratios[6],ttet_ratios[9]]
+dim7_12 = [ttet_ratios[0],ttet_ratios[3],ttet_ratios[6],ttet_ratios[10]]
 
 
 # 19-note equal temperament #

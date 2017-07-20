@@ -7,32 +7,19 @@ Created on Wed Jul 19 15:25:38 2017
 
 from freqs_and_rats import *
 
+def badness(chord, et):
 #==============================================================================
-# ttet_just_equiv = [1,16/15,10/9,6/5,5/4,4/3,45/32,3/2,8/5,5/3,9/5,15/8]
-# ttet_badness = []
-# 
-# for i in ttet_ratios:
-#     v = ttet_ratios.index(i)
-#     diff = abs(i - ttet_just_equiv[v])
-#     ttet_badness.append(diff)
-#     
-# ntet_just_equiv = [1,25/24,16/15,10/9,75/64,6/5,5/4,32/25,4/3,45/32,64/45,3/2,36/25,8/5,5/3,128/75,9/5,15/8,48/25]
-# ntet_badness = []
-# 
-# for i in ntet_ratios:
-#     v = ntet_ratios.index(i)
-#     diff = abs(i - ntet_just_equiv[v])
-#     ntet_badness.append(diff)
+#     returns the badness of a single chord as a fraction between 0 and 1
+#       chord = array of note ratios in chord
+#       et = equal temperament regime, 12 or 19
 #==============================================================================
-
-def badness(chord, et):        
     values = []    
     for i in chord:
         if et == 12:
             v = ttet_ratios.index(i)
         if et == 19:
             v = ntet_ratios.index(i)
-            values.append(v)
+        values.append(v)
     badness = []
     for j in values:
         if et == 12:
@@ -41,6 +28,20 @@ def badness(chord, et):
             k = ntet_diff[j]   
         badness.append(k)
     total_badness = sum(badness)/len(chord)
+    return(total_badness)
+    
+def sequence_badness(chords, et):  
+#==============================================================================
+#     returns the average badness of a chord sequence as a fraction between 0 and 1
+#       chords = list of arrays of note ratios in chords
+#       et = equal temperament regime, 12 or 19
+#==============================================================================      
+    chord_badness = []
+    for i in range(len(chords)):
+        chord = chords[i]
+        cb = badness(chord,et)
+        chord_badness.append(cb)
+    total_badness = sum(chord_badness)/len(chords)
     return(total_badness)
     
 

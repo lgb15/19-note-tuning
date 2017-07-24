@@ -1,5 +1,8 @@
 from freqs_and_rats import *
-from chord_sequence_new import chord_sequence
+# from chord_sequence_new import chord_sequence
+from overchords import chord_sequence
+
+c19 /= 4
 
 m7 = [ntet_ratios[k] for k in (0,6,11,15)]
 a6 = [ntet_ratios[k] for k in (0,8,16)]

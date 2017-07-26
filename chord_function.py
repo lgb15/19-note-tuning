@@ -18,6 +18,8 @@ def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     import numpy
     import pygame
     import matplotlib.pyplot as plt
+    from scipy import signal    
+    
     # sound length (seconds, a float)
     if type(duration) != float:
         print("Duration must be a float")
@@ -32,9 +34,12 @@ def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     # sampling frequency (in Herz: the number of samples per second)
     SAMPLINGFREQ = 48000
     # the number of channels (1=mono, 2=stereo)
-    NCHANNELS = 2
+    NCHANNELS = 1
     # filename of output
-    filename = name + '.wav'  
+    filename = name + '.wav' 
+    
+    amp = numpy.array([-4.6,-4.8,-5.8,-7,-7.8,-8.4,-9.6,-10.1,-10,-10.8,-11.2,-10.6,-11.1,-11.9,-11.3,-11.4,-11.4]) #trumpet
+    overtones = 10**(amp+5)
 
     # # # # #
     # PREPARE
@@ -48,9 +53,14 @@ def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     # make them into a wave function
     sine = 0*t
     for n in chord:
-        sine += numpy.sin(2*n*numpy.pi*SOUNDFREQ/SAMPLINGFREQ*t)
-        # multiply the current numbers by the maximum amplitude to make audible sound
-    sine *= MAXAMP/10
+            for m,v in enumerate(overtones):
+                sine += v*numpy.sin(m*n*2*numpy.pi*SOUNDFREQ/SAMPLINGFREQ*t)
+        
+    # apply a tukey window to eliminate clicking noise
+    sine = signal.tukey(len(sine))*sine
+    
+    # multiply the current numbers by the maximum amplitude to make audible sound    
+    sine *= MAXAMP/max(sine)
     
     if plot == 'y':
         time=t/SAMPLINGFREQ
@@ -72,25 +82,27 @@ def chord(root, ratio, duration, name, plot='n'): #inversion='root'):
     if NCHANNELS == 2:
         sine = numpy.repeat(sine, 2, axis=0)
         sine.reshape(len(sine)/2,2)
-
-    # create a sound from the list
-    snd = pygame.mixer.Sound(sine.astype('int16'))
-
     
+
+    #create a sound from the list
+    snd = pygame.mixer.Sound(sine.astype('int16'))
+ 
+     
     # # # # #
     # WAVE IT UP
-	
+ 	
     # open new wave file
     sfile = wave.open(filename, 'w')
-
+ 
     # set the parameters
     sfile.setframerate(SAMPLINGFREQ)
     sfile.setnchannels(NCHANNELS)
     sfile.setsampwidth(2)
-
+ 
     # write raw PyGame sound buffer to wave file
     sfile.writeframesraw(snd.get_raw())
-
+ 
     # close file
     sfile.close()
+
 

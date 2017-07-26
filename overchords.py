@@ -8,6 +8,7 @@ def chord_sequence(roots, ratios, durations, name):
     import wave
     import numpy
     import pygame
+    from scipy import signal
     # sound length (seconds, a float)
     SOUNDLEN = durations
     # sound frequency (in Herz: the number of vibrations per second)
@@ -25,7 +26,12 @@ def chord_sequence(roots, ratios, durations, name):
 
     dB = numpy.array([60,55,40,50,42,35,25,36,24,15,8,14,5,2])
     overtones = 10**((dB-60)/20)
-    print(overtones)
+    #amp = numpy.array([-5,-5.5,-6,-6.9,-7,-7.6,-7.8,-9.1,-8.6,-8.8,-8.5,-9.2,-10.2,-10.7]) #alto sax
+    #amp = numpy.array([-6,-7.1,-7.6,-7.4,-9.5,-10.2])  #organ
+    #amp = numpy.array([-6.5,-5,6.1,-5.9,-7.5,-7.1,-8.1,-9,-8.6,-10.1]) #oboe
+    amp = numpy.array([-4.6,-4.8,-5.8,-7,-7.8,-8.4,-9.6,-10.1,-10,-10.8,-11.2,-10.6,-11.1,-11.9,-11.3,-11.4,-11.4]) #trumpet
+    overtones = 10**(amp+5)    
+    #print(overtones)
 
     # # # # #
     # PREPARE
@@ -45,6 +51,8 @@ def chord_sequence(roots, ratios, durations, name):
         for n in chord:
             for m,v in enumerate(overtones):
                 sine_temp += v*numpy.sin(m*n*2*numpy.pi*NOTEFREQ/SAMPLINGFREQ*t)
+        
+        sine_temp = signal.tukey(len(sine_temp))*sine_temp
         
         if i ==0:
             sine = 1*sine_temp

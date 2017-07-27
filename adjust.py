@@ -11,6 +11,14 @@ def cf(x):
         x = 1/(x-int(x))
     return ans
 
+def cf_approx(x):
+    approx = 0.    
+    y = cf(x)
+    for i in range(len(y)):
+       j=x[-(1+i)]
+       k=
+        
+
 ran.seed(0)
 
 roots = []

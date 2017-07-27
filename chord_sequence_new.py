@@ -22,6 +22,7 @@ def chord_sequence(roots, ratios, durations, name):
     import wave
     import numpy
     import pygame
+    from scipy import signal
     # sound length (seconds, a float)
     SOUNDLEN = durations
     # sound frequency (in Herz: the number of vibrations per second)
@@ -54,7 +55,9 @@ def chord_sequence(roots, ratios, durations, name):
         # make them into a wave function
         sine_temp = t*0.0
         for n in chord:
-            sine_temp += numpy.sin(n*2*numpy.pi*NOTEFREQ/SAMPLINGFREQ*t)
+            sine_temp += numpy.sin(2*n*numpy.pi*NOTEFREQ/SAMPLINGFREQ*t)
+        
+        sine_temp = signal.tukey(len(sine_temp))*sine_temp        
         
         if i ==0:
             sine = 1*sine_temp
@@ -62,7 +65,7 @@ def chord_sequence(roots, ratios, durations, name):
             sine = numpy.concatenate([sine, sine_temp])
         
     # multiply the current numbers by the maximum amplitude to make audible sound
-    sine *= MAXAMP/10
+    sine *= MAXAMP/max(sine)
 
     # for stereo: double the samples, and reshape the single array to two arrays
     if NCHANNELS == 2:

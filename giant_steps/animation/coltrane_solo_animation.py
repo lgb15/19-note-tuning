@@ -13,7 +13,7 @@ img = plt.imread("melody_keyboard.png")
 fig, ax = plt.subplots()
 ax.imshow(img)
 
-p=plt.plot(0,0,'o',color='purple',ms=10.)[0]
+p=plt.plot(0,0,'o',color='yellow',ms=15.)[0]
 plt.axis('off')
 f=int(solo_cumulative[-1]/.12)
 

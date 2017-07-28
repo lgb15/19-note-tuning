@@ -6,7 +6,7 @@ img = plt.imread("melody_keyboard.png")
 fig, ax = plt.subplots()
 ax.imshow(img)
 
-p=plt.plot(0,0,'star',color='blue',ms=15.)[0]
+p=plt.plot(0,0,'o',color='magenta',ms=15.)[0]
 plt.axis('off')
 f=int(bass_cumulative[-1]/.12)
 

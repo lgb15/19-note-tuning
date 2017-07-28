@@ -5,6 +5,8 @@ Created on Thu Jul 27 10:31:22 2017
 @author: budd
 """
 import numpy as np
+import sys
+sys.path.insert(0,'/home/ara/budd/19-note-tuning/giant_steps/')
 from gscoltrane_solo import *
 
 low_cs19 = [35.6,180]

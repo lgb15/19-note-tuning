@@ -6,6 +6,8 @@ Created on Wed Jul 26 12:27:14 2017
 """
 
 import numpy as np
+import sys
+sys.path.insert(0,'/home/ara/budd/19-note-tuning/giant_steps/')
 from gs_melody import *
 
 low_cs19 = [35.6,180]

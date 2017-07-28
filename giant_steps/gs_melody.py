@@ -5,6 +5,8 @@ Created on Mon Jul 24 09:11:34 2017
 @author: budd
 """
 
+import sys
+sys.path.insert(0, '/home/ara/budd/19-note-tuning/')
 from freqs_and_rats import *
 
 melody_roots=[

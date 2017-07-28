@@ -5,6 +5,8 @@ Created on Thu Jul 27 11:17:25 2017
 @author: budd
 """
 
+import sys
+sys.path.insert(0, '/home/ara/budd/19-note-tuning/giant_steps/')
 from gs_chords import *
 import numpy as np
 
@@ -59,11 +61,11 @@ chord_list=[
 [d19,low_fs19,a19,c19],
 [low_g19,low_fs19,b19,d19],
 [bf19,low_f19,low_af19,d19],
-[ef19,low_g19,bf19,df19],
-[ef19,low_g19,bf19,df19],
-[ef19,low_g19,bf19,df19],
-[ef19,low_g19,bf19,df19],
-[ef19,low_g19,bf19,df19],
+[ef19,low_g19,bf19,d19],
+[ef19,low_g19,bf19,d19],
+[ef19,low_g19,bf19,d19],
+[ef19,low_g19,bf19,d19],
+[ef19,low_g19,bf19,d19],
 [as19,cs19,es19,gs19],
 [as19,cs19,es19,gs19],
 [as19,cs19,es19,gs19],

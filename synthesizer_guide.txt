@@ -1,0 +1,60 @@
+Synthesizer input guide
+
+#################----COMMANDS----#################
+
+Commands begin with '@' and are followed by ':' specifying the value of the command, @bpm:240 for a bpm of 240
+
+@bpm --- sets the speed of the piece in crotchets per minute. can take any positive numerical value. should be specified once for each piece
+@part --- specifies the current part being edited.  
+@instrument --- selects the instrument for the current part. current options are 'alto sax', 'organ', 'oboe' and 'trumpet'
+
+Text between two hash symbols (#) will be ignored when the file is read
+
+effects will be added later 
+
+################----NOTE ENTRY----#################
+
+This is done part by part - first specify the part number and instrument.
+Then enter the notes as a list
+Each note to be played should be in the form ([n],d)
+n is the note to be played (can be more than one, entered as a list separated by commas)
+d is the duration of each note as a fraction, e.g. 1/4 for a crotchet (quarter note)
+
+If no duration is specified, the duration of the previous note will be used.
+
+Note names are entered as follows: a19, b19, c19 etc. for white notes and 's' for sharp and 'f' for flat. e.g. c sharp would be 'cs19'(see picture of 19-tet keyboard for note locations)
+
+Apostrophes (') are used to lower the pitches of notes by one octave, stars (*) raise the pitch by an octave. Multiple apostrophes and stars will change the octave by more than one. The octave from A440 to the G-sharp above this represents the 'zeroth octave' and symbols should be used to change octaves with repect to this.
+
+The final list should be in the form [([n1],d1),([n2],d2),([n3],d3)...]
+
+Take care with the brackets!
+
+It is very important that all parts are the same duration
+
+##############------MAKING A SOUND FILE-----############
+
+First make sure that the text file you've created is saved in the same folder as -insert program name here-
+
+how to run program etc
+
+
+###############----EXAMPLE PIECE----################
+
+# giant steps test input #
+
+'Giant Steps' (first three bars)
+
+@bpm:240
+
+@part:1
+@instrument:organ
+[([fs19],1/2),([d19]),([b19]),([g19'],3/8),([bf19],9/8)]
+
+@part:2
+@instrument:trumpet
+[([fs19'',bf19',b19',ds19'],1/2),([fs19'',a19',c19',d19']),([fs19'',g19'',b19',d19']),([0],1/8),([g19'',bf19',d19',ef19'],1/4),([0],1/8),([g19'',bf19',d19',ef19'],1)]
+
+@part:3
+@instrument:oboe
+[([b19'''],1/4),([ds19''']),([d19''']),([fs19'''']),([g19'''']),([a19''']),([bf19''']),([d19''']),([ef19''']),([bf19'']),([g19''']),([af19'''])]

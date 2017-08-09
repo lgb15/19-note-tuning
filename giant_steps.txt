@@ -1,16 +1,21 @@
 # giant steps test input #
 
-@bpm:240
+
+@time_sig:[[[4,4],[3,4]],[8,8]]
+@bpm:[[240,240],[8,8]]
 
 @part:1
-@instrument:organ
+@instrument:oboe
 @notes:[[[fsh5],1/2],[[d5]],[[b4]],[[g4],3/8],[[bfl4],9/8]]
 
 @part:2
 @instrument:trumpet
-@notes:[[[fsh3,bfl3,b4,dsh4],1/2],[[fsh4,a4,c4,d4]],[[fsh4,g4,b4,d4]],[[0],1/8],[[g4,bfl4,d4,efl4],1/4],[[0],1/8],[[g4,bfl4,d4,efl4],1.]]
+@notes:[[[fsh3,bfl3,b3,dsh4],1/2],[[fsh3,a3,c4,d4]],[[fsh3,g3,b3,d4]],[[f3,afl3,bfl1,d4]],[[0],1/8],[[g3,bfl3,d4,efl4],1/4],[[0],1/8],[[g3,bfl3,d4,efl4],1/2]]
 
 @part:3
-@instrument:oboe
+@instrument:organ
 @notes:[[[b2],1/4],[[dsh3]],[[d3]],[[fsh2]],[[g2]],[[a2]],[[bfl2]],[[d2]],[[efl2]],[[bfl2]],[[g2]],[[afl2]]]
+
+@part:2
+@notes:[[[
 

@@ -16,15 +16,13 @@ def synthesizer(path):
     import numpy
     import pygame
     from scipy import signal
-    import nttet_parser as ntp
-    import matplotlib.pyplot as plt
+    import new_parser as npr
 
-    parts=ntp.parts_parse(path)
-    instruments=ntp.instrument_parse(path)
-    full_notes=ntp.get_notes(path)
-    full_durations=ntp.get_durations(path)
+    parts=npr.parts_parse(path)
+    instruments=npr.instrument_parse(path)
+    full_notes=npr.get_notes(path)
+    full_durations=npr.get_durations(path)
     
-   
     # maximal amplitude
     MAXAMP = 32767 / 2
     # sampling frequency (in Herz: the number of samples per second)
@@ -36,15 +34,16 @@ def synthesizer(path):
     # initialise mixer module
     pygame.mixer.init(frequency=SAMPLINGFREQ, channels=NCHANNELS)
     
-    for n in range(len(parts)):
-        print(n)
+    for n in range(parts):
         instrument=instruments[n]
         durations=full_durations[n]
         notes=full_notes[n]
+        
+        elapsed=numpy.cumsum(durations)
+        
         # sound length (seconds, a float)
         SOUNDLEN = durations
         # sound frequency (in Herz: the number of vibrations per second)
-#        SOUNDFREQ=full_notes[n]
         # chord expressed as a numpy array of ratios
         chord = notes
             
@@ -65,7 +64,6 @@ def synthesizer(path):
         for i in range(len(notes)):
             chord = notes[i]
             CHORDLEN = SOUNDLEN[i]   
-#            NOTEFREQ = SOUNDFREQ[i]
             # create a single vibration (range with stepsize = number of samples per cycle)
             t = numpy.arange(CHORDLEN*SAMPLINGFREQ)
             # t is now increasing numbers between 0 and 2 pi. Apply a sinusoid to
@@ -82,35 +80,13 @@ def synthesizer(path):
             else:
                 sine = numpy.concatenate([sine, sine_temp])
         full_sine.append(sine)
-            
-    print(len(full_sine[0]),len(full_sine[1]),len(full_sine[2]))
         
     final_sine=0.*full_sine[0]
     for i in range(len(full_sine)):
-        final_sine+=full_sine[i]        
-        
-#        for i in range(len(full_sine)):
-#            print(len(full_sine[i]))
-#            if i==0:
-#                final_sine=full_sine[i]
-#            else:
-#                final_sine=numpy.add(final_sine,full_sine[i])
-        
-        
-        
+        final_sine+=full_sine[i]     
         
 #     multiply the current numbers by the maximum amplitude to make audible sound
     final_sine *= MAXAMP/max(final_sine)
-    
-#    plt.subplot(411)    
-#    plt.plot(full_sine[0])
-#    plt.subplot(412)
-#    plt.plot(full_sine[1])
-#    plt.subplot(413)
-#    plt.plot(full_sine[2])
-#    plt.subplot(414)
-#    plt.plot(final_sine)
-#    plt.show
 
     # for stereo: double the samples, and reshape the single array to two arrays
     if NCHANNELS == 2:

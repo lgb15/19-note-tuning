@@ -22,11 +22,13 @@ d is the duration of each note as a fraction, e.g. 1/4 for a crotchet (quarter n
 
 If no duration is specified, the duration of the previous note will be used.
 
-Note names are entered as follows: a19, b19, c19 etc. for white notes and 's' for sharp and 'f' for flat. e.g. c sharp would be 'cs19'(see picture of 19-tet keyboard for note locations)
+Note names are entered as follows: a, b, c etc. for white notes and 'sh' for sharp and 'fl' for flat. e.g. c sharp would be 'csh'(see picture of 19-tet keyboard for note locations)
 
-Apostrophes (') are used to lower the pitches of notes by one octave, stars (*) raise the pitch by an octave. Multiple apostrophes and stars will change the octave by more than one. The octave from A440 to the G-sharp above this represents the 'zeroth octave' and symbols should be used to change octaves with repect to this.
+Each note name must be followed by a number designating what octave it is in; for example, middle c is c4. Standard pitch notation is used and all notes from a0 to c8 are available.
 
-The final list should be in the form [([n1],d1),([n2],d2),([n3],d3)...]
+Rests are entered using 0 instead of the note name. 
+
+The final list should be in the form [[[n1],d1],[[n2],d2],[[n3],d3]...]
 
 Take care with the brackets!
 
@@ -34,9 +36,9 @@ It is very important that all parts are the same duration
 
 ##############------MAKING A SOUND FILE-----############
 
-First make sure that the text file you've created is saved in the same folder as -insert program name here-
+First make sure that the text file you've created is saved in the same folder as synthesizer.py, nttet_parser.py and ntfreqs.py.
 
-how to run program etc
+how to run program etc. Once run, the program will create a .wav file of your input, saved with the same name in the same folder.
 
 
 ###############----EXAMPLE PIECE----################
@@ -49,12 +51,17 @@ how to run program etc
 
 @part:1
 @instrument:organ
-[([fs19],1/2),([d19]),([b19]),([g19'],3/8),([bf19],9/8)]
+@notes:[[[fsh5],1/2],[[d5]],[[b4]],[[g4],3/8],[[bfl4],9/8]]
 
 @part:2
 @instrument:trumpet
-[([fs19'',bf19',b19',ds19'],1/2),([fs19'',a19',c19',d19']),([fs19'',g19'',b19',d19']),([0],1/8),([g19'',bf19',d19',ef19'],1/4),([0],1/8),([g19'',bf19',d19',ef19'],1)]
+@notes:[[[fsh3,bfl3,b3,dsh4],1/2],[[fsh3,a3,c4,d4]],[[fsh3,g3,b3,d4]],[[0],1/8],[[g3,bfl3,d4,efl4],1/4],[[0],1/8],[[g3,bfl3,d4,efl4],1.]]
 
 @part:3
 @instrument:oboe
-[([b19'''],1/4),([ds19''']),([d19''']),([fs19'''']),([g19'''']),([a19''']),([bf19''']),([d19''']),([ef19''']),([bf19'']),([g19''']),([af19'''])]
+@notes:[[[b2],1/4],[[dsh3]],[[d3]],[[fsh2]],[[g2]],[[a2]],[[bfl2]],[[d2]],[[efl2]],[[bfl2]],[[g2]],[[afl2]]]
+
+
+#############-----TROUBLESHOOTING-----################
+
+

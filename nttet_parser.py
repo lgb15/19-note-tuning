@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Wed Aug  9 13:40:17 2017
+
+@author: budd
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Mon Aug  7 10:52:38 2017
 
 @author: budd
@@ -7,36 +14,37 @@ Created on Mon Aug  7 10:52:38 2017
 from ntfreqs import *   
 import numpy as np
 
+def parts_parse(path):   
+    f=open(path,'r')        
+    for line in f:
+        if '@parts:' in line:
+            p = line
+            parts=int(p[7])
+    return parts
+
 def instrument_parse(path):
     f=open(path,'r')
     instruments=[]
     for line in f:
-        if '@instrument:' in line:
+        if '@instrument' in line:
             i = line
-            instruments.append(i[12:-1])
+            part = int(line[11])
+            part-=1
+            instruments.insert(part,i[13:-1])
     return instruments
 
-def parts_parse(path):   
-    f=open(path,'r')        
-    parts=[]
-    for line in f:
-        if '@part:' in line:
-            p = line
-            parts.append(int(p[6]))
-    return parts
- 
 def notes_parse(path):
-    f=open(path,'r')          
-    notes=[]
+    f=open(path,'r')
+    notes=[[]]*parts_parse(path)
     for line in f:
-        if '@notes:' in line:
+        if '@notes' in line:
+            part=int(line[6])
             l=line.partition(':')[2]
             while '\n' in l:
                 l=l.replace('\n','')
-            l=eval(l) 
-            notes.append(l)
-    n_d = np.array(notes)
-    return(n_d)
+            l=eval(l)
+            notes[part-1] = np.concatenate([notes[part-1],l])
+    return notes
 
 def get_notes(path):
     n_d=notes_parse(path)
@@ -49,9 +57,14 @@ def get_notes(path):
     return notes
     
 def get_durations(path):
-    global d
     n_d=notes_parse(path)
     durations=[]
+    f=open(path,'r')
+    for line in f:
+        if '@bpm:' in line:
+            while '\n' in line:
+                line=line.replace('\n','')
+            bpm=float(line[5:])
     for i in range(len(n_d)):
         durations_temp=[]
         for j in range(len(n_d[i])):         
@@ -59,7 +72,42 @@ def get_durations(path):
                 d=n_d[i][j][1]    
             durations_temp.append(d)
         durations.append(durations_temp)
+    for i in range(len(durations)):
+        durations[i]=[j*4*(60/bpm) for j in durations[i]]
     return durations
+    
+#def tempo_parse(path):
+#    f=open(path,'r')
+#    for line in f:
+#        if '@bpm:' in line:
+#            while '\n' in line:
+#                line=line.replace('\n','')
+#            tempos = eval(line[5:])
+#        if '@time_sig' in line:
+#            while '\n' in line:
+#                line=line.replace('\n','')
+#            time_sigs = eval(line[10:])
+#    time_sigs_len=[]
+#    for i in range(len(time_sigs[0])):
+#        sig1=time_sigs[0][i]
+#        beats=sig1[0]/(sig1[-1]/4)
+#        time_len=beats*time_sigs[1][i]
+#        time_sigs_len.append(time_len)   
+#    tempo_nums=[]
+#    tempo_durs=[]
+#    for i in tempos[0]:
+#        tempo_nums.append(i)
+#    for i in tempos[1]:
+#        tempo_durs.append(i)
+#    tempo_times=[]
+#    for i in range(len(tempo_nums)):
+#        t=time_sigs_len[i]/tempo_nums[i]
+#        tempo_times.append(t)
+#    tempo_times=[tempo_nums,tempo_times]
+#    return tempo_times
+    
+
+            
     
             
             

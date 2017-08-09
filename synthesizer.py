@@ -39,8 +39,6 @@ def synthesizer(path):
         durations=full_durations[n]
         notes=full_notes[n]
         
-        elapsed=numpy.cumsum(durations)
-        
         # sound length (seconds, a float)
         SOUNDLEN = durations
         # sound frequency (in Herz: the number of vibrations per second)

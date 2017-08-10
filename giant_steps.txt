@@ -1,6 +1,6 @@
 # giant steps test input #
 
-@bpm:120
+@bpm:240
 
 @parts:3
 

@@ -35,7 +35,9 @@ def instrument_parse(path):
 
 def notes_parse(path):
     f=open(path,'r')
-    notes=[[]]*parts_parse(path)
+    notes=[]
+    for p in range(parts_parse(path)):
+        notes.append([])
     for line in f:
         if '@notes' in line:
             part=int(line[6])
@@ -43,7 +45,7 @@ def notes_parse(path):
             while '\n' in l:
                 l=l.replace('\n','')
             l=eval(l)
-            notes[part-1] = np.concatenate([notes[part-1],l])
+            notes[part-1].extend(l)
     return notes
 
 def get_notes(path):

@@ -16,12 +16,13 @@ def synthesizer(path):
     import numpy
     import pygame
     from scipy import signal
-    import new_parser as npr
+    import nttet_parser as ntp
 
-    parts=npr.parts_parse(path)
-    instruments=npr.instrument_parse(path)
-    full_notes=npr.get_notes(path)
-    full_durations=npr.get_durations(path)
+    parts=ntp.parts_parse(path)
+    instruments=ntp.instrument_parse(path)
+    full_notes=ntp.get_notes(path)
+    full_durations=ntp.get_durations(path)
+    volumes=ntp.dynamic_parse(path)
     
     # maximal amplitude
     MAXAMP = 32767 / 2
@@ -77,6 +78,7 @@ def synthesizer(path):
                 sine = 1*sine_temp
             else:
                 sine = numpy.concatenate([sine, sine_temp])
+        sine*=(volumes[n]/100)
         full_sine.append(sine)
         
     final_sine=0.*full_sine[0]

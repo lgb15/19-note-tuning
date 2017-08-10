@@ -76,39 +76,14 @@ def get_durations(path):
         durations[i]=[j*4*(60/bpm) for j in durations[i]]
     return durations
     
-#def tempo_parse(path):
-#    f=open(path,'r')
-#    for line in f:
-#        if '@bpm:' in line:
-#            while '\n' in line:
-#                line=line.replace('\n','')
-#            tempos = eval(line[5:])
-#        if '@time_sig' in line:
-#            while '\n' in line:
-#                line=line.replace('\n','')
-#            time_sigs = eval(line[10:])
-#    time_sigs_len=[]
-#    for i in range(len(time_sigs[0])):
-#        sig1=time_sigs[0][i]
-#        beats=sig1[0]/(sig1[-1]/4)
-#        time_len=beats*time_sigs[1][i]
-#        time_sigs_len.append(time_len)   
-#    tempo_nums=[]
-#    tempo_durs=[]
-#    for i in tempos[0]:
-#        tempo_nums.append(i)
-#    for i in tempos[1]:
-#        tempo_durs.append(i)
-#    tempo_times=[]
-#    for i in range(len(tempo_nums)):
-#        t=time_sigs_len[i]/tempo_nums[i]
-#        tempo_times.append(t)
-#    tempo_times=[tempo_nums,tempo_times]
-#    return tempo_times
-    
-
-            
-    
-            
-            
-    
+def dynamic_parse(path):
+    f=open(path,'r')
+    volumes=[]
+    for line in f:
+        if '@volume' in line:
+            while '\n' in line:
+                line=line.replace('\n','')
+            part=int(line[7])
+            volume=float(line[9:])
+            volumes.insert(part,volume)
+    return volumes

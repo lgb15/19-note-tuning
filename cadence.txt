@@ -1,4 +1,4 @@
-@bpm:1000
+@bpm:250
 @parts:2
 
 @instrument1:organ

@@ -1,0 +1,10 @@
+@parts:1
+@instrument1:organ
+@volume1:100
+@bpm:50
+
+@notes1:[[[dfl5,afl4,f4,f2], 1/2],[[b4,g4,f4,g2]],[[c5,g4,e4,c2], 1]]
+@notes1:[[[dfl5,afl4,f4,f2], 1/2],[[b4,g4,ffl4,g2]],[[c5,g4,e4,c2], 1]]
+@notes1:[[[csh5,gsh4,ffl4,ffl2], 1/2], [[b4,g4,f4,g2]], [[c5,g4,e4,c2], 1]]
+@notes1:[[[csh5,gsh4,f4,f2], 1/2], [[b4,g4,f4,g2]], [[c5,g4,e4,c2],1]]
+@notes1:[[[csh5,gsh4,ffl4,ffl2], 1/2], [[b4,g4,ffl4,g2]], [[c5,g4,e4,c2],1]]

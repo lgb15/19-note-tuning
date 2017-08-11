@@ -12,7 +12,6 @@ Created on Mon Aug  7 10:52:38 2017
 @author: budd
 """
 from ntfreqs import *   
-import numpy as np
 
 def parts_parse(path):   
     f=open(path,'r')        

@@ -30,7 +30,7 @@ Each note name must be followed by a number designating what octave it is in; fo
 
 Rests are entered using 0 instead of the note name. 
 
-The final list should be in the form [[[n10,n11,n12],d1],[[n20,n21],d2],[[n3],d3]...]
+The final list should be in the form @notes1:[[[n10,n11,n12],d1],[[n20,n21],d2],[[n3],d3]...]
 
 Take care with the brackets!
 

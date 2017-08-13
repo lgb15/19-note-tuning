@@ -1,0 +1,20 @@
+@bpm:240
+@parts:2
+
+@instrument1:organ
+@volume1:100
+@instrument2:organ
+@volume2:200
+
+@notes1: [ [[csh4],1/4] , [[csh4,esh4],7/4] ]
+@notes2: [ [[0],1/2] , [[gsh4],1/4] , [[ash4],2/4] , [[gsh4],1/4] , [[ash4],2/4] ]
+
+@notes1: [ [[csh4],1/4] , [[csh4,esh4],7/4] ]
+@notes2: [ [[0],1/2] , [[gsh4],1/4] , [[ash4]] , [[bfl4]] , [[ash4]] , [[gsh4],1/2] ]
+
+@notes1: [ [[csh4],1/4] , [[csh4,esh4],7/4] ]
+@notes2: [ [[0],1/2] , [[g4],1/4] , [[b4],2/4] , [[g4],1/4] , [[b4],2/4] ]
+
+@notes1: [ [[c4,e4],1/2] ]
+@notes2: [ [[c5],1/2] ]
+

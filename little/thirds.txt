@@ -1,0 +1,9 @@
+@bpm:240
+@parts:1
+
+@instrument1:trumpet
+@volume1:100
+
+@notes1: [ [[a4,c5],1] , [[g4,b4]] , [[esh4,a4]] , [[e4,g4]] ]
+@notes1: [ [[dsh4,f4]] , [[c4,e4]] , [[e3,d4]] , [[a3,c4]] ]
+

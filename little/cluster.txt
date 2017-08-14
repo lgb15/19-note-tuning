@@ -1,0 +1,17 @@
+@bpm:200
+@parts:4
+
+@instrument1:organ
+@volume1:100
+@instrument2:organ
+@volume2:100
+@instrument3:organ
+@volume3:100
+@instrument4:organ
+@volume4:100
+
+@notes1: [ [[f4],2] , [[e4]] ]
+@notes2: [ [[0],1/8] , [[g4],15/8] , [[0],1/4] , [[g4],7/4] ]
+@notes3: [ [[0],1/4] , [[a4],7/4] ,  [[0],1/2] , [[ash4],3/2] ]
+@notes4: [ [[0],3/8] , [[b4],13/8] ,  [[0],3/4] , [[c5],5/4] ]
+

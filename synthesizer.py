@@ -78,6 +78,7 @@ def synthesizer(path):
                 sine = 1*sine_temp
             else:
                 sine = numpy.concatenate([sine, sine_temp])
+        sine/=max(sine)
         sine*=(volumes[n]/100)
         full_sine.append(sine)
         

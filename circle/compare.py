@@ -4,7 +4,7 @@ from fractions import Fraction
 
 pl.subplot(1,1,1,axisbg='black')
 
-N = 19
+N = 28
 x = []
 y = []
 for n in range(N):

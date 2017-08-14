@@ -3,7 +3,7 @@
 @bpm:80
 @parts:4
 
-@instrument1:organ
+@instrument1:oboe
 @volume1:100
 @instrument2:organ
 @volume2:100

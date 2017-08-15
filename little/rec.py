@@ -6,5 +6,6 @@ from synthesizer import synthesizer
 #synthesizer('td9t.txt')
 #synthesizer('thirds.txt')
 #synthesizer('corsican.txt')
-synthesizer('cluster.txt')
+#synthesizer('cluster.txt')
+synthesizer('../funk.txt')
 

@@ -4,15 +4,32 @@ from fractions import Fraction
 
 pl.subplot(1,1,1,axisbg='black')
 
-N = 28
-x = []
-y = []
-for n in range(N):
-    a = 2*np.pi*(1/4-n/N)
-    x.append(np.cos(a))
-    y.append(np.sin(a))
-x = 1.1*np.array(x)
-y = 1.1*np.array(y)
+N = 12
+n = list(range(N))
+a = 2*np.pi * (1/4-np.array(n)/N)
+x = 1.1*np.cos(a)
+y = 1.1*np.sin(a)
+pl.plot(x,y,'o',color='white',markersize=10)
+
+
+a = []
+t = 0
+p = 12*np.log(3)/np.log(2) - 7;
+for n in range(1,13):
+    t += np.log(3)/np.log(2)
+    if n<5 or n==12:
+        t -= p/6
+    elif n<8:
+        t = t
+    elif n<11:
+        t -= p/12
+    else:
+        t += p/12
+    a.append(t)
+   
+a = 2*np.pi * (1/4-np.array(a))
+x = 1.2*np.cos(a)
+y = 1.2*np.sin(a)
 pl.plot(x,y,'o',color='white',markersize=10)
 
 

@@ -6,7 +6,7 @@ Created on Tue Jul 18 14:51:50 2017
 """
 
 import freqs_and_rats
-import chord_sequence_new
+import overchords
 
 roots_19 = [f19,2*bf19,2*bf19,ef19,ef19,ef19,ef19,af19,af19,af19,
          df19,df19,df19,df19,g19,g19,g19,c19,

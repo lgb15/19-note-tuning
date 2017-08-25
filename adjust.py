@@ -1,5 +1,5 @@
 from freqs_and_rats import *
-from chord_sequence_new import chord_sequence
+from overchords import chord_sequence
 
 import numpy.random as ran
 from fractions import Fraction

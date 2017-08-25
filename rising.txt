@@ -8,7 +8,7 @@
 @volume2:100
 
 @instrument3:oboe
-@volume3:1
+@volume3:100
 
 
 @notes1: [ [[0],1/3],[[c3,e3,g3],1] , [[csh3,g3,a3]] , [[d3,f3,a3]] , [[dsh3,a3,b3]] , [[e3,g3,b3]] , [[e3,ash3,c4],1/3] , [[f3,a3,dsh4]] , [[gfl4,c4,d4]] , [[d4,b3,g4],2] ]
